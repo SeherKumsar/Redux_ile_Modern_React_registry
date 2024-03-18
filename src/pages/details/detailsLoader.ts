@@ -1,5 +1,10 @@
-export async function detailsLoader() {
-  console.log("hi!");
+import { getPackage } from "../../api/queries/getPackage";
 
-  return "data!!";
+
+export async function detailsLoader(props) {
+  // await getPackage(name);
+
+  console.log(props);
+
+  return "data!!!";
 }
