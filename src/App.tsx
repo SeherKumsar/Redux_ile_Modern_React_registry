@@ -26,13 +26,13 @@ const router = createBrowserRouter([
           }
 
           // console.log(term);
-          const res = await fetch(
-            `https://registry.npmjs.org/-/v1/search?text=${term}`
-          );
+          // const res = await fetch(
+          //   `https://registry.npmjs.org/-/v1/search?text=${term}`
+          // );
 
-          const data = await res.json();
+          // const data = await res.json();
 
-          return data.objects;
+          // return data.objects;
           // return ["react", "react-redux", "redux"];
         },
       },

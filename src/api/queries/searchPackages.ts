@@ -1,7 +1,32 @@
 import type { PackageSummary } from "../types/packageSummary";
 
+interface SearchResponse {
+  objects: {
+    package: {
+      name: string;
+      description: string;
+      version: string;
+      keywords: string[];
+    };
+  }[];
+}
 
+export async function searchPackages(term: string): Promise<PackageSummary[]> {
+  const res = await fetch(
+    `https://registry.npmjs.org/-/v1/search?text=${term}`
+  );
+  const data: SearchResponse = await res.json();
 
-export async function searchPackages(): Promise<PackageSummary[]> {
-  
+  return data.objects.map(
+    // add the package to the list of packages
+    ({ package: { name, description, version, keywords } }) => {
+      return {
+        // name: searchResult.package.name,
+        name,
+        description,
+        version,
+        keywords,
+      };
+    }
+  );
 }
