@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/search/SearchPage";
+import { searchLoader } from "./pages/search/searchLoader";
 import DetailsPage from "./pages/DetailsPage";
 
 const router = createBrowserRouter([
@@ -16,25 +17,16 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage />,
-        loader: async ({ request }) => {
-          const { searchParams } = new URL(request.url);
-          const term = searchParams.get("term");
-          // console.log(request);
+        loader: searchLoader,
+        // loader: async ({ request }) => {
+        //   const { searchParams } = new URL(request.url);
+        //   const term = searchParams.get("term");
+        //   // console.log(request);
+        //   if (!term) {
+        //     throw new Error("Missing search term");
+        //   }
 
-          if (!term) {
-            throw new Error("Missing search term");
-          }
-
-          // console.log(term);
-          // const res = await fetch(
-          //   `https://registry.npmjs.org/-/v1/search?text=${term}`
-          // );
-
-          // const data = await res.json();
-
-          // return data.objects;
-          // return ["react", "react-redux", "redux"];
-        },
+        // },
       },
       {
         path: "/packages/:name",
