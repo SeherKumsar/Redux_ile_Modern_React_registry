@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/search/SearchPage";
 import { searchLoader } from "./pages/search/searchLoader";
 import DetailsPage from "./pages/DetailsPage";
+import { detailsLoader } from "./pages/details/detailsLoader";
 
 const router = createBrowserRouter([
   {
@@ -18,19 +19,11 @@ const router = createBrowserRouter([
         path: "/search",
         element: <SearchPage />,
         loader: searchLoader,
-        // loader: async ({ request }) => {
-        //   const { searchParams } = new URL(request.url);
-        //   const term = searchParams.get("term");
-        //   // console.log(request);
-        //   if (!term) {
-        //     throw new Error("Missing search term");
-        //   }
-
-        // },
       },
       {
         path: "/packages/:name",
         element: <DetailsPage />,
+        loader: detailsLoader,
       },
     ],
   },
